@@ -1,0 +1,30 @@
+### Gradle ###
+.gradle/
+build/
+out/
+classes/
+
+### IntelliJ IDEA ###
+.idea/
+*.iws
+*.iml
+*.ipr
+
+### VS Code ###
+.settings/
+.vscode/
+bin/
+.classpath
+.project
+
+### Eclipse ###
+*.launch
+
+### Java ###
+hs_err_*.log
+replay_*.log
+*.hprof
+*.jfr
+
+### Mac OS ###
+.DS_Store

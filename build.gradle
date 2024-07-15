@@ -1,0 +1,31 @@
+plugins {
+	id 'java'
+}
+
+version = "${project.version}"
+group = "${project.group}"
+
+base {
+	archivesName = project.archives_name
+}
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation "org.jetbrains:annotations:${project.annotations_version}"
+	testImplementation "org.junit.jupiter:junit-jupiter:${project.junit_jupiter_version}"
+	testRuntimeOnly "org.junit.platform:junit-platform-launcher:${project.junit_platform_launcher_version}"
+}
+
+jar {
+	manifest {
+		attributes(
+			"Main-Class": "me.julienraptor01.Main"
+		)
+	}
+}
+
+test {
+	useJUnitPlatform()
+}
