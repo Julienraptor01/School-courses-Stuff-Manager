@@ -1,5 +1,6 @@
 plugins {
 	id 'java'
+	id 'io.github.goooler.shadow' version '8.1.8'
 }
 
 version = "${project.version}"
@@ -8,22 +9,37 @@ group = "${project.group}"
 base {
 	archivesName = project.archives_name
 }
+
 repositories {
 	mavenCentral()
 }
 
 dependencies {
 	implementation "org.jetbrains:annotations:${project.annotations_version}"
+	implementation "org.apache.commons:commons-lang3:${project.commons_lang3_version}"
 	testImplementation "org.junit.jupiter:junit-jupiter:${project.junit_jupiter_version}"
 	testRuntimeOnly "org.junit.platform:junit-platform-launcher:${project.junit_platform_launcher_version}"
 }
 
 jar {
 	manifest {
-		attributes(
-			"Main-Class": "me.julienraptor01.Main"
-		)
+		attributes("Main-Class": "me.julienraptor01.Main")
 	}
+	enabled = false
+	dependsOn(shadowJar)
+}
+
+shadowJar {
+	archiveBaseName.set(base.archivesName)
+	archiveClassifier.set(null)
+	exclude 'META-INF/**'
+	exclude '**/package-info.class'
+	dependencies {
+		exclude(dependency("org.jetbrains:annotations"))
+		exclude(dependency("org.junit.jupiter:junit-jupiter"))
+		exclude(dependency("org.junit.platform:junit-platform-launcher"))
+	}
+	minimize()
 }
 
 test {

@@ -1,8 +1,8 @@
 package me.julienraptor01.data;
 
+import me.julienraptor01.data.config.Settings;
 import org.junit.jupiter.api.Test;
 
-import static me.julienraptor01.data.Settings.DEFAULT_START_MAXIMIZED;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SettingsTest {
@@ -14,13 +14,13 @@ class SettingsTest {
 
 	@Test
 	void isStartMaximized() {
-		assertEquals(DEFAULT_START_MAXIMIZED, Settings.getInstance().isStartMaximized());
+		assertEquals(Settings.DEFAULT_START_MAXIMIZED, Settings.getInstance().isStartMaximized());
 		Settings.getInstance().setStartMaximized(false);
 		assertFalse(Settings.getInstance().isStartMaximized());
 		Settings.getInstance().setStartMaximized(true);
 		assertTrue(Settings.getInstance().isStartMaximized());
 		Settings.getInstance().setStartMaximized(null);
-		assertEquals(DEFAULT_START_MAXIMIZED, Settings.getInstance().isStartMaximized());
+		assertEquals(Settings.DEFAULT_START_MAXIMIZED, Settings.getInstance().isStartMaximized());
 	}
 
 	@Test
