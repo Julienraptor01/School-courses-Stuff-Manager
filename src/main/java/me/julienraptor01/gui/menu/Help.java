@@ -7,7 +7,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
 public class Help extends JMenu {
-	private static final JMenuItem[] items = new JMenuItem[] {
+	private static final JMenuItem[] items = new JMenuItem[]{
 			new Update(),
 			new About()
 	};

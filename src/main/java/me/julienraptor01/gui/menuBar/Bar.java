@@ -1,7 +1,7 @@
 package me.julienraptor01.gui.menuBar;
 
-import me.julienraptor01.gui.menu.Help;
 import me.julienraptor01.gui.menu.Config;
+import me.julienraptor01.gui.menu.Help;
 
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;

@@ -1,6 +1,5 @@
 package me.julienraptor01.data;
 
-import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 public class Stats {
@@ -11,7 +10,6 @@ public class Stats {
 	private int critChance;
 	private int critDamage;
 
-	@Contract(pure = true)
 	private Stats(@NotNull Builder builder) {
 		this.health = builder.health;
 		this.defense = builder.defense;
@@ -69,13 +67,18 @@ public class Stats {
 		this.critDamage = critDamage;
 	}
 
+	@Override
+	public String toString() {
+		return String.format("Stats{health=%d, defense=%d, strength=%d, intelligence=%d, critChance=%d, critDamage=%d}", health, defense, strength, intelligence, critChance, critDamage);
+	}
+
 	public static class Builder {
-		private int health;
-		private int defense;
-		private int strength;
-		private int intelligence;
-		private int critChance;
-		private int critDamage;
+		private int health = 0;
+		private int defense = 0;
+		private int strength = 0;
+		private int intelligence = 0;
+		private int critChance = 0;
+		private int critDamage = 0;
 
 		public Builder health(int health) {
 			this.health = health;

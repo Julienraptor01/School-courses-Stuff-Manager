@@ -2,20 +2,19 @@ package me.julienraptor01.data;
 
 import javax.swing.ImageIcon;
 import java.awt.Image;
-import java.time.Instant;
 
 public abstract class BasicElement {
 	private String name;
-	private String description;
+	private String identifier;
 	private String textureLocation;
 	private Image icon;
 	private Long timestamp;
 
-	public BasicElement(String name, String description, String textureLocation) {
+	public BasicElement(String name, String identifier, String textureLocation, Long timestamp) {
 		this.setName(name);
-		this.setDescription(description);
+		this.setIdentifier(identifier);
 		this.setTextureLocation(textureLocation);
-		this.setTimestamp(Instant.now().getEpochSecond());
+		this.setTimestamp(timestamp);
 	}
 
 	public String getName() {
@@ -26,12 +25,12 @@ public abstract class BasicElement {
 		this.name = name;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getIdentifier() {
+		return identifier;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setIdentifier(String identifier) {
+		this.identifier = identifier;
 	}
 
 	public String getTextureLocation() {
@@ -53,5 +52,10 @@ public abstract class BasicElement {
 
 	public void setTimestamp(Long timestamp) {
 		this.timestamp = timestamp;
+	}
+
+	@Override
+	public String toString() {
+		return String.format("BasicElement{name='%s', identifier='%s', textureLocation='%s', icon=%s, timestamp=%d}", name, identifier, textureLocation, icon, timestamp);
 	}
 }

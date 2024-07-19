@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
 
 public class About extends JMenuItem {
 	private static final String name = "About";
-	private static final JLabel[] labels = new JLabel[] {
+	private static final JLabel[] labels = new JLabel[]{
 			new JLabel("Program Name"),
 			new JLabel("0.0.0-DEV"),
 			new JLabel("Julienraptor01")
