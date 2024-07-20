@@ -1,5 +1,6 @@
 package me.julienraptor01.data.config;
 
+import me.julienraptor01.data.storage.FileUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -15,7 +16,7 @@ public class Config {
 
 	private static final Settings settings = Settings.getInstance();
 
-	private static final String savePath = String.join(File.separator, System.getProperty("user.home"), "School-Courses-Java", "config.properties");
+	private static final String savePath = String.join(File.separator, FileUtils.ROOT_SAVE_PATH, "config.properties");
 
 	private static final String START_MAXIMIZED = "startMaximized";
 	private static final String DATETIME_FORMAT = "datetimeFormat";

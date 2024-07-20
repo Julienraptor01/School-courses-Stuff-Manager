@@ -2,9 +2,13 @@ package me.julienraptor01.data;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.io.Serializable;
 import java.time.Instant;
+import java.util.logging.Logger;
 
-public class Item extends Component {
+public class Item extends Component implements Serializable {
+	public static final Logger LOGGER = Logger.getLogger(BasicElement.class.getName());
+
 	private Stats stats;
 	private String reforge;
 

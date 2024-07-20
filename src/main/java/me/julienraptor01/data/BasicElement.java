@@ -2,12 +2,16 @@ package me.julienraptor01.data;
 
 import javax.swing.ImageIcon;
 import java.awt.Image;
+import java.io.Serializable;
+import java.util.logging.Logger;
 
-public abstract class BasicElement {
+public abstract class BasicElement implements Serializable {
+	public static final Logger LOGGER = Logger.getLogger(BasicElement.class.getName());
+
 	private String name;
 	private String identifier;
 	private String textureLocation;
-	private Image icon;
+	private transient Image icon; //TODO: Fix serialization issue with Image
 	private Long timestamp;
 
 	public BasicElement(String name, String identifier, String textureLocation, Long timestamp) {
