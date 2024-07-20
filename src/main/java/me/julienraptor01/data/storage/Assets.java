@@ -1,4 +1,4 @@
-package me.julienraptor01.data.assets;
+package me.julienraptor01.data.storage;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;

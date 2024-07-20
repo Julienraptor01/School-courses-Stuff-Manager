@@ -7,13 +7,14 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 
 public class Bar extends JMenuBar {
-	private static final JMenu[] menus = new JMenu[]{
+	private static final JMenu[] MENUS = new JMenu[]{
 			new Config(),
 			new Help()
 	};
 
 	public Bar() {
-		for (JMenu menu : menus) {
+		super();
+		for (JMenu menu : MENUS) {
 			this.add(menu);
 		}
 	}

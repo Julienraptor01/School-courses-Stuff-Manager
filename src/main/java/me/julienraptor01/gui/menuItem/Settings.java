@@ -5,10 +5,10 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 
 public class Settings extends JMenuItem {
-	private static final String name = "Settings";
+	private static final String NAME = "Settings";
 
 	public Settings() {
-		super(name);
+		super(NAME);
 		this.addActionListener(click -> onClick());
 	}
 
@@ -16,6 +16,6 @@ public class Settings extends JMenuItem {
 		JOptionPane.showOptionDialog(null, new JLabel[]{
 				new JLabel("Settings are not available for now."),
 				new JLabel("Please check back later.")
-		}, name, JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, null, null);
+		}, NAME, JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, null, null);
 	}
 }

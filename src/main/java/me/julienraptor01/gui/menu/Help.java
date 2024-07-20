@@ -7,14 +7,15 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
 public class Help extends JMenu {
-	private static final JMenuItem[] items = new JMenuItem[]{
+	private static final String NAME = "Help";
+	private static final JMenuItem[] ITEMS = new JMenuItem[]{
 			new Update(),
 			new About()
 	};
 
 	public Help() {
-		super("Help");
-		for (JMenuItem item : items) {
+		super(NAME);
+		for (JMenuItem item : ITEMS) {
 			this.add(item);
 		}
 	}

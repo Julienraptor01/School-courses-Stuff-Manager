@@ -3,11 +3,13 @@ package me.julienraptor01;
 import me.julienraptor01.data.*;
 import me.julienraptor01.data.config.Config;
 import me.julienraptor01.data.config.Settings;
+import me.julienraptor01.gui.MainWindow;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.logging.Logger;
+import java.util.stream.IntStream;
 
 public class Main {
 	private static final Logger LOGGER = Logger.getLogger(Main.class.getName());
@@ -46,5 +48,15 @@ public class Main {
 		LOGGER.info(CONTAINER.toString());
 		CONTAINER.clear();
 		LOGGER.info(CONTAINER.toString());
+		IntStream.range(0, 100).forEach(i -> {
+			CONTAINER.add(new Component.Builder().name("Component").identifier("component").rarity(Rarity.ADMIN).build());
+			CONTAINER.add(new Bonus.Builder().name("Bonus").identifier("bonus").value(0.0).build());
+			CONTAINER.add(new Item.Builder().name("Item").identifier("item").rarity(Rarity.ADMIN).reforge("reforge").build());
+			CONTAINER.add(new Pet.Builder().name("Pet").identifier("pet").rarity(Rarity.ADMIN).petItem((Item) CONTAINER.stream().filter(element -> element instanceof Item).findFirst().orElse(null)).build());
+		});
+		LOGGER.info(CONTAINER.toString());
+		SETTINGS.setStartMaximized(false);
+		new MainWindow();
+		SETTINGS.setStartMaximized(null);
 	}
 }

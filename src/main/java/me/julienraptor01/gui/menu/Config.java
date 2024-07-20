@@ -6,13 +6,14 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
 public class Config extends JMenu {
-	private static final JMenuItem[] items = new JMenuItem[]{
+	private static final String NAME = "Config";
+	private static final JMenuItem[] ITEMS = new JMenuItem[]{
 			new Settings()
 	};
 
 	public Config() {
-		super("Config");
-		for (JMenuItem item : items) {
+		super(NAME);
+		for (JMenuItem item : ITEMS) {
 			this.add(item);
 		}
 	}
