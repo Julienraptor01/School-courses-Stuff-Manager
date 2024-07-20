@@ -3,8 +3,10 @@ package me.julienraptor01;
 import me.julienraptor01.data.*;
 import me.julienraptor01.data.config.Config;
 import me.julienraptor01.data.config.Settings;
+import me.julienraptor01.data.storage.Assets;
 import me.julienraptor01.gui.MainWindow;
 
+import java.io.File;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -49,7 +51,7 @@ public class Main {
 		CONTAINER.clear();
 		LOGGER.info(CONTAINER.toString());
 		IntStream.range(0, 100).forEach(i -> {
-			CONTAINER.add(new Component.Builder().name("Component").identifier("component").rarity(Rarity.ADMIN).build());
+			CONTAINER.add(new Component.Builder().name("Component").identifier("component").rarity(Rarity.ADMIN).textureLocation(String.join(File.separator, Assets.TEXTURE_LOCATION, "icon.png")).build());
 			CONTAINER.add(new Bonus.Builder().name("Bonus").identifier("bonus").value(0.0).build());
 			CONTAINER.add(new Item.Builder().name("Item").identifier("item").rarity(Rarity.ADMIN).reforge("reforge").build());
 			CONTAINER.add(new Pet.Builder().name("Pet").identifier("pet").rarity(Rarity.ADMIN).petItem((Item) CONTAINER.stream().filter(element -> element instanceof Item).findFirst().orElse(null)).build());
