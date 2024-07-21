@@ -1,7 +1,7 @@
 package me.julienraptor01.gui;
 
 import me.julienraptor01.data.Container;
-import me.julienraptor01.data.config.Settings;
+import me.julienraptor01.data.Settings;
 
 import javax.swing.ImageIcon;
 import javax.swing.JScrollPane;

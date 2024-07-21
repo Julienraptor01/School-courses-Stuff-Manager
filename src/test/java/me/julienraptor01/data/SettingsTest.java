@@ -1,6 +1,5 @@
 package me.julienraptor01.data;
 
-import me.julienraptor01.data.config.Settings;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
