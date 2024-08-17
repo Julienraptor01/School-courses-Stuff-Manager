@@ -1,0 +1,5 @@
+pluginManagement {
+	plugins {
+		id 'io.github.goooler.shadow' version "${shadow_version}"
+	}
+}

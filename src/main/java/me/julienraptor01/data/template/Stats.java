@@ -1,13 +1,10 @@
-package me.julienraptor01.data;
+package me.julienraptor01.data.template;
+
+import java.io.Serializable;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.io.Serializable;
-import java.util.logging.Logger;
-
 public class Stats implements Serializable {
-	public static final Logger LOGGER = Logger.getLogger(BasicElement.class.getName());
-
 	private int health;
 	private int defense;
 	private int strength;

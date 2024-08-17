@@ -1,4 +1,4 @@
-package me.julienraptor01.data;
+package me.julienraptor01.data.template;
 
 import org.junit.jupiter.api.Test;
 

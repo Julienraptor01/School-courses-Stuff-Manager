@@ -1,23 +1,23 @@
-package me.julienraptor01.data;
-
-import org.jetbrains.annotations.NotNull;
+package me.julienraptor01.data.complex;
 
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.logging.Logger;
+
+import org.jetbrains.annotations.NotNull;
+
+import me.julienraptor01.data.template.BasicElement;
+import me.julienraptor01.data.template.Rarity;
 
 public class Component extends BasicElement implements Serializable {
-	public static final Logger LOGGER = Logger.getLogger(BasicElement.class.getName());
-
 	private Rarity rarity;
 
 	protected Component(String name, String identifier, String textureLocation, Long timestamp, Rarity rarity) {
-		super(name, identifier, textureLocation, timestamp);
+		super(-1, name, identifier, textureLocation, timestamp);
 		this.rarity = rarity;
 	}
 
 	protected Component(@NotNull Builder builder) {
-		super(builder.name, builder.identifier, builder.textureLocation, builder.timestamp);
+		super(-1, builder.name, builder.identifier, builder.textureLocation, builder.timestamp);
 		this.rarity = builder.rarity;
 	}
 

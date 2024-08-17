@@ -1,18 +1,17 @@
-package me.julienraptor01.data;
-
-import org.jetbrains.annotations.NotNull;
+package me.julienraptor01.data.complex;
 
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.logging.Logger;
+
+import org.jetbrains.annotations.NotNull;
+
+import me.julienraptor01.data.template.BasicElement;
 
 public class Bonus extends BasicElement implements Serializable {
-	public static final Logger LOGGER = Logger.getLogger(BasicElement.class.getName());
-
 	private double value;
 
 	private Bonus(@NotNull Builder builder) {
-		super(builder.name, builder.identifier, builder.textureLocation, builder.timestamp);
+		super(-1, builder.name, builder.identifier, builder.textureLocation, builder.timestamp);
 		this.setValue(builder.value);
 	}
 

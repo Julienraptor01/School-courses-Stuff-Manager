@@ -1,9 +1,9 @@
 package me.julienraptor01.data.storage;
 
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import java.awt.Image;
 import java.io.File;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 
 public class Assets {
 	public static final String TEXTURE_LOCATION = String.join(File.separator, "src", "main", "resources", "assets");

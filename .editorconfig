@@ -1,17 +1,38 @@
 root = true
 
 [*]
+charset = utf-8
 end_of_line = lf
 insert_final_newline = true
+trim_trailing_whitespace = true
 indent_size = tab
 indent_style = tab
 tab_width = 4
-trim_trailing_whitespace = true
+max_line_length = 2147483647 # Because stupid ij still does even even when set to off
+ij_any_keep_indents_on_empty_lines = false
 
 [*.java]
 ij_continuation_indent_size = 8
-ij_java_imports_layout = *,|,javax.**,java.**,|,$*
+ij_java_imports_layout = org.junit.**, |, java.**, javax.**, |, org.jetbrains.**, |, me.julienraptor01.**, |, *, |, $*
+ij_java_class_count_to_use_import_on_demand = 5
+ij_java_doc_add_blank_line_after_description = false
+ij_java_doc_align_param_comments = false
+ij_java_annotation_parameter_wrap = split_into_lines
+ij_java_new_line_after_lparen_in_annotation = true
+ij_java_rparen_on_new_line_in_annotation = true
+ij_java_keep_control_statement_in_one_line = false
+ij_java_enum_constants_wrap = split_into_lines
 
-[{*.yml,*.json,*.properties}]
+[*.{yml,properties}]
 indent_size = 2
 indent_style = space
+
+[*.properties]
+ij_properties_spaces_around_key_value_delimiter = true
+ij_properties_keep_blank_lines = true
+
+[*.gradle]
+ij_groovy_align_named_args_in_map = false
+
+[gradle-wrapper.properties]
+ij_formatter_enabled = false

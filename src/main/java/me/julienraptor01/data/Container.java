@@ -1,36 +1,40 @@
 package me.julienraptor01.data;
 
-import me.julienraptor01.control.DataAccessLayer;
-import me.julienraptor01.data.storage.FileUtils;
-
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+
+import me.julienraptor01.data.complex.Pet;
+import me.julienraptor01.data.storage.FileUtils;
+import me.julienraptor01.data.template.BasicElement;
+import me.julienraptor01.data.template.Rarity;
 
 /**
  * This singleton class is used to store the elements of the application.
  */
 public class Container implements DataAccessLayer {
-	public static final Logger LOGGER = Logger.getLogger(BasicElement.class.getName());
+	private static final Logger LOGGER = Logger.getLogger(Container.class.getName());
 
 	private static Container instance = null;
 
-	private static ArrayList<BasicElement> elements = new ArrayList<>();
+	private static Map<Integer, BasicElement> elements = new HashMap<>();
+
+	private int internalId = 0;
 
 	/**
 	 * Private constructor to prevent instantiation
 	 */
 	private Container() {
-		load();
 	}
 
 	/**
 	 * Get the instance of the Container class or create a new one if it doesn't exist
-	 *
 	 * @return the instance of the Container class
 	 */
 	public static Container getInstance() {
@@ -43,7 +47,6 @@ public class Container implements DataAccessLayer {
 		LOGGER.info(container.toString());
 		container.save();
 		LOGGER.info(container.toString());
-		container.clear();
 		LOGGER.info(container.toString());
 		container.load();
 		LOGGER.info(container.toString());
@@ -55,7 +58,8 @@ public class Container implements DataAccessLayer {
 	@Override
 	public void save() {
 		try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(FileUtils.DATA_PATH))) {
-			objectOutputStream.writeObject(elements);
+			objectOutputStream.writeObject(internalId);
+			objectOutputStream.writeObject(new ArrayList<>(elements.values()));
 		} catch (Exception e) {
 			LOGGER.severe(e.getMessage());
 		}
@@ -67,73 +71,72 @@ public class Container implements DataAccessLayer {
 	@Override
 	public void load() {
 		try (ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(FileUtils.DATA_PATH))) {
-			elements = ((ArrayList<?>) objectInputStream.readObject()).stream().filter(element -> element instanceof BasicElement).map(element -> (BasicElement) element).collect(Collectors.toCollection(ArrayList::new));
+			internalId = (int) objectInputStream.readObject();
+			elements = ((ArrayList<?>) objectInputStream.readObject()).stream().collect(Collectors.toMap(element -> ((BasicElement) element).getInternalId(), element -> (BasicElement) element));
+			LOGGER.info(String.format("Loaded %d elements", elements.size()));
+			LOGGER.info(String.format("Internal : %d", internalId));
+			LOGGER.info(elements.toString());
 		} catch (Exception e) {
 			LOGGER.severe(e.getMessage());
 		}
 	}
 
 	/**
-	 * Get the number of elements in the container
-	 *
-	 * @return the number of elements
+	 * Get the elements
+	 * @return the elements
 	 */
-	@Override
-	public int size() {
-		return elements.size();
+	public ArrayList<BasicElement> getElements() {
+		return new ArrayList<>(elements.values());
 	}
 
 	/**
 	 * Set the element at the index
-	 *
-	 * @param index the index of the element
+	 * @param id the index of the element
 	 */
 	@Override
-	public void set(int index, BasicElement element) {
-		elements.set(index, element);
+	public void set(int id, BasicElement element) {
+		elements.put(id, element);
 	}
 
 	/**
 	 * Get an element from the container
-	 *
-	 * @param index the index of the element
+	 * @param id the index of the element
 	 * @return the element
 	 */
 	@Override
-	public BasicElement get(int index) {
-		return elements.get(index);
+	public BasicElement get(int id) {
+		return elements.get(id);
 	}
 
 	/**
 	 * Add an element to the container
-	 *
 	 * @param element the element to add
 	 */
 	@Override
 	public void add(BasicElement element) {
-		elements.add(element);
+		element.setInternalId(internalId++);
+		elements.put(element.getInternalId(), element);
 	}
 
 	/**
 	 * Remove an element from the container
-	 *
-	 * @param index the index of the element to remove
+	 * @param id the index of the element to remove
 	 */
 	@Override
-	public void remove(int index) {
-		elements.remove(index);
+	public void remove(int id) {
+		elements.remove(id);
 	}
 
 	/**
-	 * Clear the container
+	 * Get the internal id
+	 * @return the internal id
 	 */
-	@Override
-	public void clear() {
-		elements.clear();
+	public int getInternalId() {
+		return internalId;
 	}
 
 	@Override
 	public String toString() {
-		return String.format("Container[%s%s]", elements.stream().map(element -> String.format("\n\t%s", element)).collect(Collectors.joining()), elements.isEmpty() ? " " : "\n");
+		return String.format("Container[%s%s]", elements.values().stream().map(basicElement -> String.format("\n\t%s", basicElement)).collect(Collectors.joining()), elements.isEmpty() ? " " : "\n");
 	}
 }

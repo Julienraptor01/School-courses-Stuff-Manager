@@ -1,14 +1,14 @@
-package me.julienraptor01.data;
-
-import org.jetbrains.annotations.NotNull;
+package me.julienraptor01.data.complex;
 
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.logging.Logger;
+
+import org.jetbrains.annotations.NotNull;
+
+import me.julienraptor01.data.template.Rarity;
+import me.julienraptor01.data.template.Stats;
 
 public class Item extends Component implements Serializable {
-	public static final Logger LOGGER = Logger.getLogger(BasicElement.class.getName());
-
 	private Stats stats;
 	private String reforge;
 

@@ -1,8 +1,8 @@
-package me.julienraptor01.data;
-
-import org.jetbrains.annotations.NotNull;
+package me.julienraptor01.data.template;
 
 import java.awt.Color;
+
+import org.jetbrains.annotations.NotNull;
 
 public enum Rarity {
 	COMMON(TextColor.WHITE),

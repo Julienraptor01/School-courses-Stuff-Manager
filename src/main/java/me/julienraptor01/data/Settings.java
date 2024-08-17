@@ -1,15 +1,17 @@
 package me.julienraptor01.data;
 
-import me.julienraptor01.data.storage.FileUtils;
-import org.apache.commons.lang3.BooleanUtils;
-import org.apache.commons.lang3.StringUtils;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.time.format.DateTimeFormatter;
 import java.util.Properties;
 import java.util.logging.Logger;
+
+import me.julienraptor01.data.storage.FileUtils;
+
+import org.apache.commons.lang3.BooleanUtils;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * This singleton class is used to store the settings of the application.
@@ -37,7 +39,6 @@ public class Settings {
 
 	/**
 	 * Get the instance of the Settings class or create a new one if it doesn't exist
-	 *
 	 * @return the instance of the Settings class
 	 */
 	public static Settings getInstance() {
@@ -46,6 +47,7 @@ public class Settings {
 
 	/**
 	 * Load the settings from the file
+	 * <br>FIXME: switch to the new Files API and use UTF-8
 	 */
 	public void load() {
 		try (FileInputStream fileInputStream = new FileInputStream(FileUtils.CONFIG_PATH)) {
@@ -53,7 +55,17 @@ public class Settings {
 			properties.load(fileInputStream);
 			startMaximized = BooleanUtils.toBooleanObject(properties.getProperty(START_MAXIMIZED_PROPERTY));
 			String datetimeFormatString = properties.getProperty(DATETIME_FORMAT_PROPERTY);
-			datetimeFormat = StringUtils.equals(datetimeFormatString, "null") ? null : datetimeFormatString;
+			if (StringUtils.equals(datetimeFormatString, "null")) {
+				datetimeFormat = null;
+			} else {
+				datetimeFormat = datetimeFormatString;
+				try {
+					DateTimeFormatter.ofPattern(datetimeFormat);
+				} catch (IllegalArgumentException illegalArgumentException) {
+					datetimeFormat = null;
+					LOGGER.warning("Invalid datetime format '" + datetimeFormatString + "': " + illegalArgumentException.getMessage());
+				}
+			}
 		} catch (IOException e) {
 			LOGGER.warning(e.getMessage());
 		}
@@ -61,6 +73,7 @@ public class Settings {
 
 	/**
 	 * Save the settings to the file
+	 * <br>FIXME: switch to the new Files API and use UTF-8
 	 */
 	public void save() {
 		if (!new File(FileUtils.CONFIG_PATH).exists() && !new File(FileUtils.CONFIG_PATH).getParentFile().mkdirs()) {
@@ -78,7 +91,6 @@ public class Settings {
 
 	/**
 	 * If the startMaximized is null, {@link #DEFAULT_START_MAXIMIZED} is returned
-	 *
 	 * @return weather the application should start maximized or not
 	 */
 	public boolean isStartMaximized() {
@@ -88,7 +100,6 @@ public class Settings {
 	/**
 	 * Set if the application should start maximized or not<br>
 	 * When set to null {@link #isStartMaximized()} returns {@link #DEFAULT_START_MAXIMIZED}
-	 *
 	 * @param startMaximized if the application should start maximized or not
 	 */
 	public void setStartMaximized(Boolean startMaximized) {
@@ -97,7 +108,6 @@ public class Settings {
 
 	/**
 	 * Get the startMaximized value
-	 *
 	 * @return the startMaximized value
 	 */
 	public Boolean getStartMaximizedValue() {
@@ -106,18 +116,16 @@ public class Settings {
 
 	/**
 	 * If the datetimeFormat is null, {@link #DEFAULT_DATETIME_FORMAT} is returned
-	 *
 	 * @return the format of the date and time
 	 */
 	public String getDatetimeFormat() {
-		return datetimeFormat == null ? DEFAULT_DATETIME_FORMAT : datetimeFormat;
+		return datetimeFormat == null || datetimeFormat.isEmpty() ? DEFAULT_DATETIME_FORMAT : datetimeFormat;
 	}
 
 	/**
 	 * Set the format of the date and time<br>
 	 * See {@link java.time.format.DateTimeFormatter} for the format syntax<br>
 	 * When set to null {@link #getDatetimeFormat()} returns {@link #DEFAULT_DATETIME_FORMAT}
-	 *
 	 * @param datetimeFormat the format of the date and time
 	 */
 	public void setDatetimeFormat(String datetimeFormat) {
@@ -126,7 +134,6 @@ public class Settings {
 
 	/**
 	 * Get the datetimeFormat value
-	 *
 	 * @return the datetimeFormat value
 	 */
 	public String getDatetimeFormatValue() {
