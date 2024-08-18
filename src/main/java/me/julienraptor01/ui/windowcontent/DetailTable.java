@@ -8,8 +8,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.stream.IntStream;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
@@ -19,7 +17,7 @@ import javax.swing.table.TableColumn;
 
 import me.julienraptor01.data.Settings;
 import me.julienraptor01.data.template.Rarity;
-import me.julienraptor01.ui.UIAccessLayer;
+import me.julienraptor01.ui.idk.DetailTuple;
 
 public class DetailTable extends JScrollPane {
 	private static final ActualTable actualTable = new ActualTable();
@@ -29,7 +27,7 @@ public class DetailTable extends JScrollPane {
 		setViewportView(actualTable);
 	}
 
-	public void update(ArrayList<UIAccessLayer.detailTuple> details) {
+	public void update(ArrayList<DetailTuple> details) {
 		actualTable.update(details);
 	}
 
@@ -45,14 +43,14 @@ public class DetailTable extends JScrollPane {
 			getTableHeader().setReorderingAllowed(false);
 		}
 
-		public void update(ArrayList<UIAccessLayer.detailTuple> details) {
+		public void update(ArrayList<DetailTuple> details) {
 			((MyAbstractTableModel) getModel()).update(details);
 		}
 
 		public static class MyAbstractTableModel extends AbstractTableModel {
-			private ArrayList<UIAccessLayer.detailTuple> details = new ArrayList<>();
+			private ArrayList<DetailTuple> details = new ArrayList<>();
 
-			public void update(ArrayList<UIAccessLayer.detailTuple> details) {
+			public void update(ArrayList<DetailTuple> details) {
 				this.details = details;
 				fireTableDataChanged();
 			}
@@ -100,7 +98,9 @@ public class DetailTable extends JScrollPane {
 									case Long longValue -> setText(ZonedDateTime.ofInstant(Instant.ofEpochSecond(longValue), ZoneId.systemDefault()).format(DateTimeFormatter.ofPattern(SETTINGS.getDatetimeFormat())));
 									case Double doubleValue -> setText(String.valueOf(doubleValue));
 									case Rarity rarity -> setText(rarity.toString());
-									case Icon icon -> setIcon(new ImageIcon(((Image) icon).getScaledInstance(64, 64, Image.SCALE_DEFAULT)));
+									//case Image image -> setIcon(new ImageIcon((image).getScaledInstance(64, 64, Image.SCALE_DEFAULT))); //FIXME: Find out why it's broken
+									case Image ignored -> {
+									} //NOOP because it's broken
 									case null -> setText("");
 									default -> throw new IllegalArgumentException("Unexpected value: " + value);
 								}

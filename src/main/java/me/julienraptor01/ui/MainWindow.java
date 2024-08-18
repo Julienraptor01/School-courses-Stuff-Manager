@@ -3,7 +3,6 @@ package me.julienraptor01.ui;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.ArrayList;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
@@ -12,6 +11,8 @@ import me.julienraptor01.control.Controller;
 import me.julienraptor01.data.Settings;
 import me.julienraptor01.data.storage.Assets;
 import me.julienraptor01.data.template.BasicElement;
+import me.julienraptor01.ui.idk.DetailTuple;
+import me.julienraptor01.ui.idk.Element;
 import me.julienraptor01.ui.windowcontent.Bar;
 import me.julienraptor01.ui.windowcontent.DetailTable;
 import me.julienraptor01.ui.windowcontent.MainTable;
@@ -59,12 +60,9 @@ public class MainWindow extends JFrame implements UIAccessLayer {
 	}
 
 	@Override
-	public BasicElement askForElement() {
-		JDialog dialog = new JDialog(this, "Add new element", true);
-		dialog.setSize(480, 320);
-		dialog.setLocationRelativeTo(this);
-		dialog.setVisible(true);
-		return null; //TODO: implement this method
+	public Element askForElement(Element oldElement) {
+		ElementDialog dialog = new ElementDialog(this, oldElement);
+		return dialog.askForElement();
 	}
 
 	@Override
@@ -73,7 +71,7 @@ public class MainWindow extends JFrame implements UIAccessLayer {
 	}
 
 	@Override
-	public void detail(ArrayList<detailTuple> element) {
+	public void detail(ArrayList<DetailTuple> element) {
 		((MainPanel) PANEL).detail(element);
 	}
 
@@ -101,7 +99,7 @@ public class MainWindow extends JFrame implements UIAccessLayer {
 			mainTable.update(elements);
 		}
 
-		void detail(ArrayList<detailTuple> element) {
+		void detail(ArrayList<DetailTuple> element) {
 			detailTable.update(element);
 		}
 	}

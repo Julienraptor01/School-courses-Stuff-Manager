@@ -76,7 +76,7 @@ public class Bar extends JMenuBar {
 
 			public Config() {
 				super(NAME);
-				this.addActionListener(click -> onClick());
+				addActionListener(click -> onClick());
 			}
 
 			private void onClick() {

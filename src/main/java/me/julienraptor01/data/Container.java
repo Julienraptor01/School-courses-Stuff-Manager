@@ -1,9 +1,6 @@
 package me.julienraptor01.data;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -57,6 +54,10 @@ public class Container implements DataAccessLayer {
 	 */
 	@Override
 	public void save() {
+		File file = new File(FileUtils.DATA_PATH);
+		if (!file.exists()) {
+			boolean ignored = file.getParentFile().mkdirs();
+		}
 		try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(FileUtils.DATA_PATH))) {
 			objectOutputStream.writeObject(internalId);
 			objectOutputStream.writeObject(new ArrayList<>(elements.values()));
@@ -90,8 +91,8 @@ public class Container implements DataAccessLayer {
 	}
 
 	/**
-	 * Set the element at the index
-	 * @param id the index of the element
+	 * Set the Element at the index
+	 * @param id the index of the Element
 	 */
 	@Override
 	public void set(int id, BasicElement element) {
@@ -99,9 +100,9 @@ public class Container implements DataAccessLayer {
 	}
 
 	/**
-	 * Get an element from the container
-	 * @param id the index of the element
-	 * @return the element
+	 * Get an Element from the container
+	 * @param id the index of the Element
+	 * @return the Element
 	 */
 	@Override
 	public BasicElement get(int id) {
@@ -109,8 +110,8 @@ public class Container implements DataAccessLayer {
 	}
 
 	/**
-	 * Add an element to the container
-	 * @param element the element to add
+	 * Add an Element to the container
+	 * @param element the Element to add
 	 */
 	@Override
 	public void add(BasicElement element) {
@@ -119,8 +120,8 @@ public class Container implements DataAccessLayer {
 	}
 
 	/**
-	 * Remove an element from the container
-	 * @param id the index of the element to remove
+	 * Remove an Element from the container
+	 * @param id the index of the Element to remove
 	 */
 	@Override
 	public void remove(int id) {
