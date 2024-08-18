@@ -98,9 +98,7 @@ public class DetailTable extends JScrollPane {
 									case Long longValue -> setText(ZonedDateTime.ofInstant(Instant.ofEpochSecond(longValue), ZoneId.systemDefault()).format(DateTimeFormatter.ofPattern(SETTINGS.getDatetimeFormat())));
 									case Double doubleValue -> setText(String.valueOf(doubleValue));
 									case Rarity rarity -> setText(rarity.toString());
-									//case Image image -> setIcon(new ImageIcon((image).getScaledInstance(64, 64, Image.SCALE_DEFAULT))); //FIXME: Find out why it's broken
-									case Image ignored -> {
-									} //NOOP because it's broken
+									case Image ignoredimage -> {} //setIcon(new ImageIcon((image).getScaledInstance(64, 64, Image.SCALE_DEFAULT))); //FIXME: fix the icon not rendering or rendering too much
 									case null -> setText("");
 									default -> throw new IllegalArgumentException("Unexpected value: " + value);
 								}
