@@ -20,7 +20,7 @@ import me.julienraptor01.ui.windowcontent.MainTable;
 public class MainWindow extends JFrame implements UIAccessLayer {
 	private static final Dimension MIN_SIZE = new Dimension(720, 480);
 	private static final Dimension SIZE = new Dimension(1280, 720);
-	private static final String TITLE = "Main Window";
+	private static final String TITLE = "Stuff Manager";
 
 	private static final JMenuBar MENU_BAR = new Bar();
 	private static final JPanel PANEL = new MainPanel();

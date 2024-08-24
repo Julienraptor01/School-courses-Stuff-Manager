@@ -36,13 +36,13 @@ public class ElementDialog extends JDialog {
 		private static final String[] LABELS_TEXT = new String[]{"Type:", "Name:", "Identifier:", "Texture Location:", "Timestamp:", "Value:", "Rarity:", "Health:", "Defense:", "Strength:", "Intelligence:", "Crit Chance:", "Crit Damage:", "Reforge:", "Pet Item Name:", "Pet Item Identifier:", "Pet Item Texture Location:", "Pet Item Timestamp:", "Pet Item Rarity:", "Pet Item Health:", "Pet Item Defense:", "Pet Item Strength:", "Pet Item Intelligence:", "Pet Item Crit Chance:", "Pet Item Crit Damage:", "Pet Item Reforge:"};
 		private static final String RESET_TEXT = "Reset";
 		private static final JLabel[] LABELS = Stream.of(LABELS_TEXT).map(JLabel::new).toArray(JLabel[]::new);
+		private static boolean isReady = false;
 		private static final JButton OK = new JButton("OK") {{
 			addActionListener(event -> {
 				isReady = true;
 				((JDialog) getParent().getParent().getParent().getParent()).dispose();
 			});
 		}};
-		private static boolean isReady = false;
 		private static Element element = null;
 		private static final JComboBox<String> TYPE = new JComboBox<>(TYPES) {{
 			addItemListener(event -> {

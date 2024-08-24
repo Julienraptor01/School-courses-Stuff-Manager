@@ -1,7 +1,6 @@
 package me.julienraptor01.ui.windowcontent;
 
 import java.awt.Dialog;
-import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemEvent;
@@ -196,7 +195,7 @@ public class Bar extends JMenuBar {
 
 		public static class About extends JMenuItem {
 			private static final String NAME = "About";
-			private static final JLabel[] LABELS = new JLabel[]{new JLabel("Program Name"), new JLabel("0.0.0-DEV"), new JLabel("Julienraptor01")};
+			private static final JLabel[] LABELS = new JLabel[]{new JLabel("Stuff Manager"), new JLabel("0.0.0-DEV"), new JLabel("Julienraptor01")};
 
 			public About() {
 				super(NAME);
