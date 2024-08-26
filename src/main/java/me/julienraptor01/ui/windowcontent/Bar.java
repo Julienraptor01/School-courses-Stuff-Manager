@@ -23,7 +23,12 @@ public class Bar extends JMenuBar {
 
 	public static class File extends JMenu {
 		private static final String NAME = "File";
-		private static final JMenuItem[] ITEMS = new JMenuItem[]{new Load(), new Save()};
+		private static final JMenuItem[] ITEMS = new JMenuItem[]{
+				new Load(),
+				new Save(),
+				new Export(),
+				new Import()
+		};
 
 		public File() {
 			super(NAME);
@@ -55,6 +60,32 @@ public class Bar extends JMenuBar {
 
 			private void onClick() {
 				MainWindow.controllerInstance.actionPerformed(new ActionEvent(this, 0, Actions.SAVE));
+			}
+		}
+
+		public static class Export extends JMenuItem {
+			private static final String NAME = "Export";
+
+			public Export() {
+				super(NAME);
+				this.addActionListener(click -> onClick());
+			}
+
+			private void onClick() {
+				MainWindow.controllerInstance.actionPerformed(new ActionEvent(this, 0, Actions.EXPORT));
+			}
+		}
+
+		public static class Import extends JMenuItem {
+			private static final String NAME = "Import";
+
+			public Import() {
+				super(NAME);
+				this.addActionListener(click -> onClick());
+			}
+
+			private void onClick() {
+				MainWindow.controllerInstance.actionPerformed(new ActionEvent(this, 0, Actions.IMPORT));
 			}
 		}
 	}

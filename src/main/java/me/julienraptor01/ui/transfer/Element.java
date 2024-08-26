@@ -1,4 +1,4 @@
-package me.julienraptor01.ui.idk;
+package me.julienraptor01.ui.transfer;
 
 import java.time.Instant;
 

@@ -12,7 +12,7 @@ import me.julienraptor01.data.complex.Component;
 import me.julienraptor01.data.complex.Item;
 import me.julienraptor01.data.complex.Pet;
 import me.julienraptor01.data.template.Rarity;
-import me.julienraptor01.ui.idk.Element;
+import me.julienraptor01.ui.transfer.Element;
 
 public class ElementDialog extends JDialog {
 	private static final String NAME = "Element Dialog";

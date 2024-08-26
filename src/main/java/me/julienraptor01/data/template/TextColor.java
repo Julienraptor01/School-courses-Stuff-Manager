@@ -1,10 +1,10 @@
 package me.julienraptor01.data.template;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.awt.Color;
 import java.util.Arrays;
 import java.util.stream.Collectors;
+
+import org.jetbrains.annotations.NotNull;
 
 public enum TextColor {
 	BLACK(0x000000),

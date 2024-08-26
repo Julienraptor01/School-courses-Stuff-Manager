@@ -83,6 +83,34 @@ public class Container implements DataAccessLayer {
 	}
 
 	/**
+	 * Export the elements to a file as text
+	 * @param file the file to exportFile to
+	 */
+	@Override
+	public void exportFile(File file) {
+		//FIXME: implement askForFile so this can be removed
+		if (file == null) {
+			file = new File(FileUtils.DATA_PATH + ".txt");
+		}
+		try (PrintWriter printWriter = new PrintWriter(new FileWriter(file))) {
+			printWriter.println(internalId);
+			elements.values().forEach(element -> {
+				printWriter.println(element.getClass().getName());
+				printWriter.println(element);
+			});
+		} catch (IOException e) {
+			LOGGER.severe(e.getMessage());
+		}
+	}
+
+	/**
+	 * Import the elements from a file
+	 * @param file the file to import from
+	 */
+	@Override
+	public void importFile(File file) {}
+
+	/**
 	 * Get the elements
 	 * @return the elements
 	 */

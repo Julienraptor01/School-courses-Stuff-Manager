@@ -2,6 +2,7 @@ package me.julienraptor01.ui;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.io.File;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
@@ -11,8 +12,8 @@ import me.julienraptor01.control.Controller;
 import me.julienraptor01.data.Settings;
 import me.julienraptor01.data.storage.Assets;
 import me.julienraptor01.data.template.BasicElement;
-import me.julienraptor01.ui.idk.DetailTuple;
-import me.julienraptor01.ui.idk.Element;
+import me.julienraptor01.ui.transfer.DetailTuple;
+import me.julienraptor01.ui.transfer.Element;
 import me.julienraptor01.ui.windowcontent.Bar;
 import me.julienraptor01.ui.windowcontent.DetailTable;
 import me.julienraptor01.ui.windowcontent.MainTable;
@@ -63,6 +64,11 @@ public class MainWindow extends JFrame implements UIAccessLayer {
 	public Element askForElement(Element oldElement) {
 		ElementDialog dialog = new ElementDialog(this, oldElement);
 		return dialog.askForElement();
+	}
+
+	@Override
+	public File askForFile() {
+		return null;
 	}
 
 	@Override

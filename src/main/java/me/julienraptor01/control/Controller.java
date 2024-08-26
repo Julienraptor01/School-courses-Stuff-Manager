@@ -15,8 +15,8 @@ import me.julienraptor01.data.complex.Pet;
 import me.julienraptor01.data.template.BasicElement;
 import me.julienraptor01.data.template.Stats;
 import me.julienraptor01.ui.UIAccessLayer;
-import me.julienraptor01.ui.idk.DetailTuple;
-import me.julienraptor01.ui.idk.Element;
+import me.julienraptor01.ui.transfer.DetailTuple;
+import me.julienraptor01.ui.transfer.Element;
 
 public class Controller implements ActionListener {
 	private final DataAccessLayer dataAccessLayer;
@@ -122,6 +122,8 @@ public class Controller implements ActionListener {
 				dataAccessLayer.load();
 				uiAccessLayer.update(dataAccessLayer.getElements());
 			}
+			case String event when event.equals(Actions.EXPORT) -> dataAccessLayer.exportFile(uiAccessLayer.askForFile());
+			case String event when event.equals(Actions.IMPORT) -> {}
 			default -> throw new IllegalStateException("Unexpected value: " + e);
 		}
 	}

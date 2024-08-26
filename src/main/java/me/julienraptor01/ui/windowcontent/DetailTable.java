@@ -8,6 +8,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.stream.IntStream;
+import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
@@ -17,7 +18,7 @@ import javax.swing.table.TableColumn;
 
 import me.julienraptor01.data.Settings;
 import me.julienraptor01.data.template.Rarity;
-import me.julienraptor01.ui.idk.DetailTuple;
+import me.julienraptor01.ui.transfer.DetailTuple;
 
 public class DetailTable extends JScrollPane {
 	private static final ActualTable actualTable = new ActualTable();
@@ -25,6 +26,15 @@ public class DetailTable extends JScrollPane {
 	public DetailTable() {
 		super();
 		setViewportView(actualTable);
+	}
+
+	public static void main(String[] args) {
+		JFrame frame = new JFrame();
+		frame.add(new DetailTable());
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setLocationRelativeTo(null);
+		frame.pack();
+		frame.setVisible(true);
 	}
 
 	public void update(ArrayList<DetailTuple> details) {
