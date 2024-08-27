@@ -226,7 +226,7 @@ public class Bar extends JMenuBar {
 
 		public static class About extends JMenuItem {
 			private static final String NAME = "About";
-			private static final JLabel[] LABELS = new JLabel[]{new JLabel("Stuff Manager"), new JLabel("0.0.0-DEV"), new JLabel("Julienraptor01")};
+			private static final JLabel[] LABELS = new JLabel[]{new JLabel("Stuff Manager"), new JLabel("1.0.0"), new JLabel("Julienraptor01")};
 
 			public About() {
 				super(NAME);
